@@ -31,13 +31,19 @@ public class TestTP3 {
     @Test
     public void testEntrer()
     {
+        // Arrange
+        String expectedResult = "Site officiel de la ville de Bordeaux | Bordeaux";
+        int resultNumber = 0;
+
+        // Act
+
         HomePage homePage = new HomePage(driver);
-        homePage.rechercheAvecEnter("Bordeaux");
+        ResultsPage resultsPage = homePage.rechercheAvecEntree("Bordeaux");
+        String result = resultsPage.getResult(resultNumber);
 
-        ResultsPage resultsPage = new ResultsPage(driver);
-        String result = resultsPage.getResult(0);
-        Assert.assertThat(result, is("Site officiel de la ville de Bordeaux | Bordeaux"));
+        // Assert
 
+        Assert.assertThat(result, is(expectedResult));
         //ResultsPage resultsPage = new ResultsPage();
         //Assert.assertThat(resultsPage.getResult(0), is("Site officiel de la ville de Bordeaux | Bordeaux"));
     }
@@ -46,15 +52,29 @@ public class TestTP3 {
     public void testClick()
     {
         HomePage homePage = new HomePage(driver);
+        ResultsPage resultsPage = homePage.rechercheAvecClick("Bordeaux");
+        String result = resultsPage.getResult(0);
+        Assert.assertThat(result, is("Site officiel de la ville de Bordeaux | Bordeaux"));
+
+        /*HomePage homePage = new HomePage(driver);
         homePage.rechercheAvecClick("Bordeaux");
 
         ResultsPage resultsPage = new ResultsPage(driver);
         String result = resultsPage.getResult(0);
-        Assert.assertThat(result, is("Site officiel de la ville de Bordeaux | Bordeaux"));
+        Assert.assertThat(result, is("Site officiel de la ville de Bordeaux | Bordeaux"));*/
 
         /*ResultsPage resultsPage = new ResultsPage();
         Assert.assertThat(resultsPage.getResult(0), is("Site officiel de la ville de Bordeaux | Bordeaux"));
 
         */
+    }
+
+    @Test
+
+    public void testClick2()
+    {
+        HomePage homePage = new HomePage(driver);
+        String result = homePage.rechercheAvecClick("Bordeaux").getResult(0);
+        Assert.assertThat(result, is("Site officiel de la ville de Bordeaux | Bordeaux"));
     }
 }

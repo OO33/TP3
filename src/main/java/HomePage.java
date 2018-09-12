@@ -26,16 +26,18 @@ public class HomePage {
         PageFactory.initElements(driver, this);
     }
 
-    public void rechercheAvecEnter(String text)
+    public ResultsPage rechercheAvecEntree(String text)
     {
         barreRecherche.sendKeys(text);
         barreRecherche.sendKeys(Keys.ENTER);
+        return new ResultsPage(driver);
 
     }
 
-    public void rechercheAvecClick(String text)
+    public ResultsPage rechercheAvecClick(String text)
     {
         barreRecherche.sendKeys(text);
         buttonRecherche.click();
+        return new ResultsPage(driver);
     }
 }
